@@ -11,12 +11,15 @@ orbs:
 workflows:
   test-and-deploy:
     jobs:
-      - node/test:
-          version: '16.10'
-          pkg-manager: npm
+      - node/test
       - build-and-deploy:
           requires:
             - node/test
+          filters:
+            branches:
+              only:
+                - main
+
 
 jobs:
   build-and-deploy:
